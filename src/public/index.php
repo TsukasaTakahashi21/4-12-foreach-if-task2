@@ -9,19 +9,14 @@ $examScoreLists = [
 $resultList = [];
 $passingScores = ["japanese" => 35, "math" => 40, "english" => 31];
   foreach ($examScoreLists as $examineeNum => $examScoreList) {
-    $pass = true;
     foreach ($examScoreList as $subject => $score) {
       if ($score < $passingScores[$subject]) {
-        $pass = false;
-        break;
+        $resultList[] = ($examineeNum + 1)."番目の受験者は不合格";
+        continue 2;
       }
     }
-    if ($pass) {
       $resultList[] = ($examineeNum + 1)."番目の受験者は合格";
-    } else {
-      $resultList[] = ($examineeNum + 1)."番目の受験者は不合格";
     }
-  }
   echo implode("\n", $resultList);
   ?>
   
